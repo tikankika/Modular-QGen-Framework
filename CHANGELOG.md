@@ -9,6 +9,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+- **🚨 CRITICAL: Inspera Platform Feedback Requirement Discovered** (2025-11-04)
+  - **Discovery**: Through QTI Generator testing (Evolution quiz, 61 questions), identified that Inspera requires ALL FOUR feedback fields to contain EXACTLY THE SAME TEXT
+  - **Impact**: When authoring questions for Inspera export, all feedback fields (correct, incorrect, partial, unanswered) must have identical content
+  - **QTI Generator Response**: v08 now automatically uses unified feedback by copying the 'correct' field text to all four states
+  - **Authoring Guidance Updated**:
+    - ❌ **Avoid**: correct="Correct!", incorrect="Wrong!", partial="Partially correct"
+    - ✅ **Use**: All fields with comprehensive explanatory text (e.g., "Evolution is defined as... [full explanation]")
+    - Write ONE feedback message that works for all outcome states
+  - **Platform-Specific**: This is an Inspera limitation, not part of QTI 2.2 standard (which allows different feedback per state)
+  - **Future Consideration**: Inspera has been contacted about this limitation; may be enhanced in future platform updates
+  - **Documentation Updated**: bb6 Question Type Field Requirements now includes Inspera feedback constraints
+  - **Reference**: See QTI-Generator-for-Inspera CHANGELOG.md (2025-11-04 Session 4) for full technical investigation details
+
 ### Planned
 - Extract Components 3, 5, 6 into separate documentation files
 - Additional workflow examples beyond Evolution case study
