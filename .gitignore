@@ -1,0 +1,88 @@
+# Modular QGen Framework - Git Ignore File
+# Documentation project ignore patterns
+
+# ============================================
+# macOS
+# ============================================
+.DS_Store
+._*
+.Spotlight-V100
+.Trashes
+.AppleDouble
+.LSOverride
+
+# Icon files
+Icon
+
+# Thumbnails
+._*
+
+# Files that might appear in the root
+.DocumentRevisions-V100
+.fseventsd
+.TemporaryItems
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+
+# ============================================
+# Editors
+# ============================================
+# VSCode
+.vscode/
+*.code-workspace
+
+# IntelliJ IDEA
+.idea/
+*.iml
+*.iws
+
+# Vim
+*.swp
+*.swo
+*.swn
+*~
+
+# Emacs
+\#*\#
+.\#*
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# ============================================
+# Temporary Files
+# ============================================
+*.tmp
+*.temp
+*.bak
+*.backup
+.~*
+~$*
+
+# ============================================
+# OS
+# ============================================
+# Windows
+Thumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Linux
+.directory
+.Trash-*
+
+# ============================================
+# Documentation Build Artifacts (future)
+# ============================================
+_build/
+dist/
+*.pdf
+*.docx
+*.pptx
+
+# ============================================
+# Personal Notes (if any)
+# ============================================
+NOTES_PRIVATE.md
+TODO_PRIVATE.md
