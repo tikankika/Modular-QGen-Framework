@@ -9,6 +9,62 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### 2025-11-06 - MQG_bb6 Specification v2.0
+
+#### Added
+- **MQG_bb6_Question_Type_Field_Requirements_02.md** - Enhanced specification with blank-type clarity
+  - **New Decision Guide Section**: "BLANK-TYPE QUESTIONS: DECISION GUIDE" added before TYPE 1
+    - Clear flowchart: 1 blank → `fill_in_the_blank`, 2+ blanks → `text_entry`
+    - When to use each type with concrete examples
+    - 3 common mistakes with wrong/correct examples
+    - Quick comparison table showing key differences
+  - **TYPE 4 Updates (FILL IN THE BLANK - SINGLE BLANK ONLY)**:
+    - Title changed to emphasize "SINGLE BLANK ONLY"
+    - Added explicit rule: "MUST have EXACTLY ONE blank"
+    - Added rules: "NO Scoring section" and "NO Partially Correct Feedback"
+    - New "❌ WRONG USAGE" section showing multiple blanks mistake
+    - Provides corrected example using `text_entry` instead
+  - **TYPE 5 Updates (TEXT ENTRY - MULTIPLE BLANKS)**:
+    - Added introduction: "Use for: TWO OR MORE blanks"
+    - Updated rules to emphasize "Use for 2+ blanks"
+    - Added "Comparison with fill_in_the_blank" section
+    - Shows overkill example of using `text_entry` for single blank
+  - **Quick Reference Table Enhanced**:
+    - Added "Blanks" column showing "1 only" vs "2+"
+    - Added "Format" column showing `_____` vs `{{BLANK-N}}`
+    - Added "Scoring" column for all question types
+  - **Validation Checklist Expanded**:
+    - New section: "For Fill-in-the-Blank Questions" with 7 checks
+    - New section: "For Text Entry Questions" with 6 checks
+    - Specific format validation for each blank type
+  - **Common Errors Section Updated**:
+    - Added 4 blank-type specific errors (highlighted in bold):
+      - Multiple blanks with fill_in_the_blank
+      - Using `______` in text_entry
+      - Missing Scoring in text_entry
+      - Using `{{BLANK-1}}` with fill_in_the_blank
+  - **Document Statistics**: v01: 1533 lines → v02: 1834 lines (~300 lines added)
+
+- **QTI Generator Integration**
+  - Validation script (`validate_mqg_format.py`) created in QTI-Generator-for-Inspera repo
+  - Validates markdown files against MQG_bb6 v2.0 specifications before QTI generation
+  - Detects ambiguous usage: `fill_in_the_blank` with multiple blanks
+  - Reports missing required sections: Scoring, Partially Correct Feedback
+  - Tested with TRA265 file: 11 errors found in 3 questions
+  - Enables quality control checkpoint in question authoring workflow
+
+#### Impact
+- **Eliminates ambiguity** between `fill_in_the_blank` and `text_entry` question types
+- **Prevents TRA265-style errors** (multiple blanks with wrong type code)
+- **Provides clear guidance** for Claude Desktop when generating questions
+- **Validation integration** catches format errors before costly QTI generation/import cycle
+
+#### Files Changed
+- Created: `docs/MQG_0.1/MQG_bb6_Question_Type_Field_Requirements_02.md`
+- Reference: QTI-Generator-for-Inspera `validate_mqg_format.py`
+
+---
+
 ### Changed
 - **🚨 CRITICAL: Inspera Platform Feedback Requirement Discovered** (2025-11-04)
   - **Discovery**: Through QTI Generator testing (Evolution quiz, 61 questions), identified that Inspera requires ALL FOUR feedback fields to contain EXACTLY THE SAME TEXT
