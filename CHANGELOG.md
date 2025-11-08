@@ -9,6 +9,171 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### 2025-11-08 - MQG_0.2 Branch: BB6 Restructuring to 2-Document System
+
+#### Changed
+- **BB6 Major Restructuring** - Simplified from 4-way split to 2-document system
+  - **Rationale**: 4-way split (bb6a/b/c/d) created confusion for Claude Desktop
+  - **New Approach**: Functional separation - field specs vs validation analysis
+  - **Output Format Clarified**: Single markdown file with embedded metadata headers (not two-file system)
+
+- **MQG_bb6_Field_Requirements_v03.md** (NEW - comprehensive field specification)
+  - Purpose: Complete field specification for question generation
+  - **Simplified Metadata Structure**: Type, Identifier, Points, Tags, Language (optional)
+  - **Tags Enhancement**: LO codes, Bloom's Level, and Difficulty specified ONLY in Tags field
+  - All 16 question type specifications with required sections
+  - Inspera unified feedback requirement documentation
+  - Format rules and validation priorities
+  - Quick reference table for all question types
+  - Optional configuration fields documented
+  - Machine-readable, condensed format optimized for Claude Desktop
+
+- **MQG_bb6_Output_Validation_v03.md** (NEW - validation and analysis guide)
+  - Purpose: Validate and improve question output files from bb1-5 process
+  - Step-by-step validation workflow
+  - Metadata field validation rules
+  - **Tags Validation**: Enforces LO/Bloom/Difficulty within Tags field
+  - Question content validation
+  - Type-specific validation checklists
+  - Common errors with specific fix templates
+  - Validation report format specification
+  - Improvement suggestion framework
+  - Designed for Claude Desktop to analyze output files and suggest improvements
+
+- **Metadata Simplification** - Aligned with QTI Generator implementation
+  - **Removed separate fields**: Learning Objectives, Bloom's Level, Difficulty
+  - **Rationale**: These fields are NOT exported to QTI XML (only Tags field is exported)
+  - **New approach**: All pedagogical metadata goes in Tags field
+  - **Aligns with**: bb6b v02 decision and QTI Generator qti_packager.py implementation
+  - **Evidence**: QTI Generator code explicitly states it does NOT export these fields
+  - **Benefit**: Simpler structure, no redundant validation, matches actual QTI export behavior
+  - **Tags structure**: Course ID, LO codes, Bloom's Level, Difficulty, topics, type, grading, status
+  - **Example**: `TRA265, L1b, AY2024-25, Well-to-Wheel, LO1, Remember, Easy, Fill-Blank, Auto-Scored, Validated`
+
+#### Removed
+- **Archived 4-way split** - Moved to `docs/ModularQGen_archive/bb6_4way_split_archived_20251108/`
+  - MQG_bb6a_Question_Output_Specifications_02.md
+  - MQG_bb6b_Metadata_Requirements_02.md
+  - MQG_bb6c_Validation_Checklist_02.md
+  - MQG_bb6d_Output_File_Structure_02.md
+  - Reason: Overly granular split created confusion; 2-document system provides clearer separation of concerns
+
+#### Impact
+- **Clearer Purpose Separation** - Field requirements vs output validation
+  - bb6_Field_Requirements: "What to generate" (specification for question creation)
+  - bb6_Output_Validation: "How to validate" (analysis guide for quality control)
+- **Simplified Mental Model** - Easier for Claude Desktop to understand which document to use when
+- **Output Format Clarity** - Single markdown file with embedded metadata (matches existing TRA265 example)
+- **Better Usability** - Two comprehensive documents instead of four fragmented specs
+- **Maintained Completeness** - All content from 4-way split retained and reorganized
+
+#### Files Changed
+- Created: `docs/MQG_0.2/MQG_bb6_Field_Requirements_v03.md`
+- Created: `docs/MQG_0.2/MQG_bb6_Output_Validation_v03.md`
+- Archived: `docs/ModularQGen_archive/bb6_4way_split_archived_20251108/` (bb6a, bb6b, bb6c, bb6d)
+- Updated: `CHANGELOG.md` (this file)
+
+---
+
+### 2025-11-08 - MQG_0.2 Branch: BB6 Modular Split (ARCHIVED)
+
+#### Added
+- **MQG_0.2 Development Branch** - Created new branch for modular documentation development
+  - Branch: MQG_0.2 (pushed to GitHub)
+  - Purpose: Refine processes through modular building blocks
+  - Location: `docs/MQG_0.2/`
+
+- **BB6 4-Way Split** - Refactored BB6_v02 into four machine-readable documents
+  - **MQG_bb6a_Question_Output_Specifications_02.md** (693 lines)
+    - Question structure specifications for all 16 question types
+    - Condensed technical format without examples or pedagogical content
+    - Type codes, required sections, rules, forbidden sections
+    - Quick reference table for rapid lookup
+    - Decision rule for blank-type questions
+    - Inspera unified feedback requirement
+
+  - **MQG_bb6b_Metadata_Requirements_02.md** (143 lines)
+    - Required fields: Type, Identifier, Points, Language, Tags
+    - Removed unused fields: Learning_Objectives, Blooms_Level, Difficulty
+    - Format specifications and accepted values
+    - Answer field format rules
+    - QTI language normalization (en → en_us, sv → sv_se, etc.)
+
+  - **MQG_bb6c_Validation_Checklist_02.md** (387 lines)
+    - Pre-QTI export validation workflow
+    - Universal validation rules for all questions
+    - Type-specific validation checklists
+    - Common errors table
+    - Validation severity levels
+
+  - **MQG_bb6d_Output_File_Structure_02.md** (NEW - 344 lines)
+    - Two-file output system: questions.md + metadata.csv/md
+    - Separation of question content from metadata
+    - CSV and Markdown metadata format options
+    - Folder structure with images
+    - Question-to-metadata linking via Question_Number
+    - QTI Generator input expectations
+    - Migration guide from single-file format
+    - Complete example project structure
+
+#### Changed
+- **Documentation Format Philosophy** - Pivoted to machine-readable specifications
+  - Target audience: Claude Desktop / GenAI (not human readers)
+  - Format: Stringent, condensed, precise technical specs only
+  - Removed: Emojis, examples, pedagogical explanations, fluff
+  - Initial result: 1,834 lines → 1,151 lines (-37% reduction)
+  - After QTI alignment: 1,223 lines (bb6a: 693, bb6b: 143, bb6c: 387)
+  - After bb6d addition: 1,630 lines (bb6a: 694, bb6b: 144, bb6c: 388, bb6d: 404)
+  - Net change: 1,834 → 1,630 lines (-11% reduction, +404 for two-file workflow)
+
+- **Metadata Field Refinement (bb6b)** - Analysis of QTI Generator implementation
+  - Removed fields not used in QTI export: Learning_Objectives, Blooms_Level, Difficulty
+  - Made Language required (actually used in QTI XML: inspera:defaultLanguage)
+  - Made Tags required (exported as searchable labels in IMS manifest)
+  - Only fields that affect QTI output remain in specification
+  - bb6b reduced from 181 → 143 lines (-21%)
+
+- **Question Output Specification Refinement (bb6a)** - Aligned with QTI templates
+  - **CRITICAL FIX:** Added Inspera unified feedback requirement
+    - All feedback subsections (Correct/Incorrect/Partially Correct/Unanswered) receive identical content
+    - Generator uses unified_feedback for all placeholders
+    - Removed misleading "FEEDBACK_SUBSECTIONS" counts
+    - Added comprehensive example showing unified feedback pattern
+  - **Optional fields documented:**
+    - Expected Length: default 15 (text_entry, fill_in_the_blank)
+    - Prompt: default "Select all that apply" (multiple_response)
+    - Scoring fields: intelligent defaults documented
+    - Configuration fields: shuffle, editor_prompt, upload_prompt, field_width, hotspot coloring
+  - **Implementation notes added:**
+    - fill_in_the_blank uses text_entry template internally
+    - true_false labels auto-generated from Language field
+  - **Quick Reference Table updated:**
+    - Removed obsolete "Partial Feedback" column
+    - Added unified feedback note
+  - **New section:** Optional Configuration Fields (common + type-specific)
+  - bb6a increased 621 → 693 lines (+12% for critical clarifications)
+
+#### Impact
+- **Modular Architecture** - BB6 now separated by concern
+  - bb6a: What to output (question structure)
+  - bb6b: What metadata to include (field specs)
+  - bb6c: How to validate (quality control)
+  - bb6d: How to organize output files (two-file system)
+- **Improved Maintainability** - Easier to update individual components
+- **Optimized for GenAI** - Faster parsing, reduced token usage
+- **Clear Separation** - Content vs metadata vs validation vs file structure
+- **Two-File Workflow** - Enables bulk metadata editing, cleaner collaboration
+
+#### Files Changed
+- Created: `docs/MQG_0.2/MQG_bb6a_Question_Output_Specifications_02.md`
+- Created: `docs/MQG_0.2/MQG_bb6b_Metadata_Requirements_02.md`
+- Created: `docs/MQG_0.2/MQG_bb6c_Validation_Checklist_02.md`
+- Created: `docs/MQG_0.2/MQG_bb6d_Output_File_Structure_02.md` (NEW)
+- Updated: All bb6 documents with cross-references to bb6d
+- Branch: MQG_0.2 (new development branch)
+
+---
+
 ### 2025-11-06 - MQG_bb6 Specification v2.0
 
 #### Added
