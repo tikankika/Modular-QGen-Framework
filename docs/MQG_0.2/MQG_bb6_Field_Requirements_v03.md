@@ -29,7 +29,6 @@ Valid Values:
   multiple_choice_single
   multiple_response
   true_false
-  fill_in_the_blank
   text_entry
   inline_choice
   match
@@ -353,70 +352,7 @@ FEEDBACK: Unified content (see INSPERA REQUIREMENT)
 
 ---
 
-### TYPE 4: fill_in_the_blank
-
-```
-REQUIRED SECTIONS:
-- Question Text (with _____)
-- Correct Answer
-- Accepted Alternatives
-- Case Sensitive (true/false)
-- Feedback (4 subsections)
-
-OPTIONAL:
-- Expected Length (default: 15 characters)
-
-RULES:
-- MUST have exactly 1 blank
-- Blank format: _____ (five underscores)
-- NO Scoring section
-- NO Partially Correct Feedback
-- NO {{BLANK-N}} format
-
-BLANK FORMAT:
-The WTW acronym stands for _____-to-_____.
-
-FORBIDDEN:
-- Scoring section
-- Partially Correct Feedback
-- Multiple blanks (use text_entry instead)
-
-FEEDBACK: Unified content (see INSPERA REQUIREMENT)
-```
-
-**Example:**
-```markdown
-**Type**: fill_in_the_blank
-**Identifier**: FITB_Q001
-**Points**: 1
-**Learning Objectives**: LO1A
-**Bloom's Level**: Remember
-**Difficulty**: easy
-**Tags**: terminology, definitions
-
-## Question Text
-The acronym "WTW" stands for ______-to-______.
-
-## Correct Answer
-Well; Wheels
-
-## Accepted Alternatives
-- well; wheels
-- WELL; WHEELS
-
-## Case Sensitive
-false
-
-## Expected Length
-30 characters
-
-## Feedback
-[Unified feedback for all subsections]
-```
-
----
-
-### TYPE 5: text_entry
+### TYPE 4: text_entry
 
 ```
 REQUIRED SECTIONS:
@@ -430,13 +366,17 @@ REQUIRED SECTIONS:
 - Feedback (5 subsections including Partially Correct)
 
 RULES:
-- MUST have 2+ blanks
+- CAN have 1+ blanks (single blank allowed)
 - Blank format: {{BLANK-1}}, {{BLANK-2}}, etc.
 - Sequential numbering (1, 2, 3...)
-- NO _____ format (use fill_in_the_blank instead)
+- NO underscore format (_____) - not supported
+
+NOTE: For single-blank questions, use text_entry with one {{BLANK-1}}.
+The underscore format (_____) is NOT supported in this implementation.
 
 BLANK FORMAT:
 The three stages are: {{BLANK-1}}, {{BLANK-2}}, and {{BLANK-3}}.
+Single blank: The acronym "WTW" stands for {{BLANK-1}}.
 
 FEEDBACK: Unified content (see INSPERA REQUIREMENT)
 REQUIRES_SCORING: Yes
@@ -553,19 +493,33 @@ REQUIRES_SCORING: Yes
 REQUIRED SECTIONS:
 - Question Text (with image: ![alt](path.png))
 - Hotspot Definition
-  - Shape (rectangle|circle|polygon)
+  - Shape (rectangle|rect|circle|polygon)
   - Correct Region Coordinates
 - Feedback (4 subsections)
 
 COORDINATE FORMATS:
-- Rectangle: x1,y1,x2,y2
-- Circle: cx,cy,r
-- Polygon: x1,y1,x2,y2,x3,y3...
+RECTANGLE - Three formats accepted:
+  1. Corner coordinates: x1=N, y1=N, x2=N, y2=N
+  2. Position + dimensions: x=N, y=N, width=N, height=N
+  3. Plain format: x1,y1,x2,y2
+
+CIRCLE - Two formats accepted:
+  1. Named format: x=N, y=N, radius=N
+  2. Plain format: cx,cy,r
+
+POLYGON:
+  - Plain format: x1,y1,x2,y2,x3,y3...
+
+SHAPE NAMES:
+  - Both "rectangle" and "rect" are accepted (equivalent)
+  - Use "circle" for circular regions
+  - Use "polygon" for irregular shapes
 
 RULES:
 - Image MUST be in Question Text
 - Coordinates based on image pixel dimensions
-- ONE correct region per question
+- Multiple hotspots can be defined (mark correct/incorrect)
+- Can require multiple clicks (TWO, THREE, etc.)
 
 IMAGE FORMAT:
 ![Diagram description](images/filename.png)
@@ -785,7 +739,6 @@ NOT_INTERACTIVE: Yes
 | multiple_choice_single | 2 | A | No | 4 (GCIAU) | No |
 | multiple_response | 3 | A, C, E | Yes | 5 (GCPIU) | No |
 | true_false | 2 (A/B) | A or B | No | 4 (GCIAU) | No |
-| fill_in_the_blank | - | text | No | 4 (GCIAU) | No |
 | text_entry | - | N/A | Yes | 5 (GCPIU) | No |
 | inline_choice | - | N/A | Yes | 5 (GCPIU) | No |
 | match | 3 | 1 → A | Yes | 5 (GCPIU) | No |

@@ -52,7 +52,6 @@ Manual-Graded: N (X%)
 
 Question Types:
 - multiple_choice_single: N
-- fill_in_the_blank: N
 - text_entry: N
 ...
 ```
@@ -385,53 +384,29 @@ FIX TEMPLATE:
 "Question {N}: Answer must be 'A' or 'B' for true_false questions, not '{current}'."
 ```
 
-### fill_in_the_blank
-
-```
-VALIDATE:
-✓ Question Text contains exactly 1 blank: _____
-✓ ## Correct Answer section
-✓ ## Accepted Alternatives section
-✓ ## Case Sensitive field (true/false)
-✓ NO ## Scoring section (forbidden)
-✓ NO ### Partially Correct Response Feedback (forbidden)
-✓ NOT using {{BLANK-N}} format
-
-COMMON ERRORS:
-❌ Multiple blanks (use text_entry instead)
-❌ Using {{BLANK-1}} format (use _____ instead)
-❌ Including Scoring section (not needed)
-❌ Including Partially Correct feedback (not applicable)
-❌ Missing Accepted Alternatives
-
-FIX TEMPLATE:
-"Question {N}: fill_in_the_blank has {count} blanks. Must have EXACTLY 1 blank. Either remove blanks or change type to 'text_entry'."
-"Question {N}: fill_in_the_blank uses wrong format. Use '_____' (five underscores), not '{{BLANK-1}}'."
-"Question {N}: fill_in_the_blank should NOT have '## Scoring' section. Remove it."
-"Question {N}: Missing '## Accepted Alternatives' section."
-```
-
 ### text_entry
 
 ```
 VALIDATE:
-✓ Question Text contains 2+ blanks: {{BLANK-1}}, {{BLANK-2}}, etc.
+✓ Question Text contains 1+ blanks: {{BLANK-1}}, {{BLANK-2}}, etc.
 ✓ Blanks numbered sequentially (1, 2, 3...)
-✓ ## Blanks section with subsections for each
-✓ Each blank has: Correct Answer, Accepted Alternatives, Case Sensitive, Expected Length
+✓ ## Blank N sections (one for each blank)
+✓ Each blank has: Correct Answer, Accepted Alternatives, Case Sensitive, Maximum Length
 ✓ ## Scoring section present
 ✓ ### Partially Correct Response Feedback present
-✓ NOT using _____ format
+✓ NOT using underscore format (_____)
+
+NOTE: Single-blank questions should also use text_entry with {{BLANK-1}}.
+The underscore format (_____) is NOT supported.
 
 COMMON ERRORS:
-❌ Only 1 blank (use fill_in_the_blank instead)
-❌ Using _____ format (use {{BLANK-N}} instead)
-❌ Non-sequential numbering (1, 3, 2 → 1, 2, 3)
+❌ Using underscore format (_____)  - not supported
+❌ Non-sequential numbering (1, 3, 2 → should be 1, 2, 3)
 ❌ Missing Scoring section
 ❌ Missing Partially Correct feedback
+❌ Missing blank subsections
 
 FIX TEMPLATE:
-"Question {N}: text_entry has only 1 blank. Change type to 'fill_in_the_blank' or add more blanks."
 "Question {N}: text_entry should use '{{BLANK-N}}' format, not '_____'."
 "Question {N}: Blank numbering not sequential. Found {{BLANK-{nums}}}. Should be {{BLANK-1}}, {{BLANK-2}}, {{BLANK-3}}."
 "Question {N}: Missing required '## Scoring' section for partial credit type."
@@ -485,20 +460,111 @@ FIX TEMPLATE:
 ```
 VALIDATE:
 ✓ Question Text contains image: ![alt](path.png)
-✓ ## Hotspot Definition section
-✓ Shape specified (rectangle|circle|polygon)
-✓ Correct Region Coordinates
+✓ ## Hotspot Definitions OR ## Hotspots section present
+✓ Each hotspot has: ID, Label, Shape, Coordinates
+✓ Shape is valid: "rect", "rectangle", "circle", or "polygon"
+✓ Coordinates match shape requirements:
+  - Rectangle: Three accepted formats
+    1. Corner coordinates: x1=N, y1=N, x2=N, y2=N
+    2. Position + dimensions: x=N, y=N, width=N, height=N
+    3. Plain format: x1,y1,x2,y2
+  - Circle: Two accepted formats
+    1. Named format: x=N, y=N, radius=N
+    2. Plain format: cx,cy,r
+✓ Correct hotspot identifier specified in ## Answer section
+
+SHAPE NAME FLEXIBILITY:
+✓ Both "rect" and "rectangle" are accepted (equivalent)
+✓ Shape names are case-insensitive
+
+COORDINATE VALIDATION:
+✓ Rectangle with corner coords: All four values (x1, y1, x2, y2) present and numeric
+✓ Rectangle with position: All four values (x, y, width, height) present and numeric
+✓ Rectangle plain format: Exactly four comma-separated numeric values
+✓ Circle with named format: All three values (x, y, radius) present and numeric
+✓ Circle plain format: Exactly three comma-separated numeric values
+✓ Coordinates represent valid regions (width > 0, height > 0, radius > 0)
 
 COMMON ERRORS:
 ❌ Missing image in Question Text
-❌ Invalid shape type
-❌ Wrong coordinate format
-❌ Missing Hotspot Definition
+❌ Missing ## Hotspot Definitions or ## Hotspots section
+❌ Invalid shape type (e.g., "square", "ellipse" - not supported)
+❌ Mismatched coordinate format for shape type
+❌ Missing required coordinate values
+❌ Non-numeric coordinate values
+❌ Negative dimensions (width, height, radius)
+❌ Invalid rectangle (x1 >= x2 or y1 >= y2)
+❌ Missing hotspot identifier in ## Answer section
 
 FIX TEMPLATE:
 "Question {N}: hotspot type requires image in Question Text. Use format: ![description](images/filename.png)"
-"Question {N}: Missing '## Hotspot Definition' section."
-"Question {N}: Shape '{shape}' is invalid. Must be: rectangle, circle, or polygon."
+"Question {N}: Missing '## Hotspot Definitions' or '## Hotspots' section."
+"Question {N}: Shape '{shape}' is invalid. Must be one of: rect, rectangle, circle, or polygon."
+"Question {N}: Rectangle coordinates invalid. Use one of three formats:
+  1. Corner coordinates: x1=N, y1=N, x2=N, y2=N
+  2. Position + dimensions: x=N, y=N, width=N, height=N
+  3. Plain format: x1,y1,x2,y2"
+"Question {N}: Circle coordinates invalid. Use one of two formats:
+  1. Named format: x=N, y=N, radius=N
+  2. Plain format: cx,cy,r"
+"Question {N}: Hotspot {id} has missing or non-numeric coordinate value: '{coord}'"
+"Question {N}: Rectangle coordinates invalid - x2 must be greater than x1 and y2 must be greater than y1. Found: x1={x1}, y1={y1}, x2={x2}, y2={y2}"
+"Question {N}: Circle radius must be positive. Found: radius={radius}"
+"Question {N}: Missing '## Answer' section with correct hotspot identifier."
+
+EXAMPLES OF VALID HOTSPOT DEFINITIONS:
+
+Example 1: Rectangle with corner coordinates
+---
+ID: HOTSPOT1
+Label: Refining Stage
+Shape: rect
+Coordinates: x1=580, y1=260, x2=720, y2=320
+---
+
+Example 2: Rectangle with position + dimensions
+---
+ID: HOTSPOT2
+Label: Combustion Stage
+Shape: rectangle
+Coordinates: x=1090, y=260, width=140, height=60
+---
+
+Example 3: Rectangle with plain format
+---
+ID: HOTSPOT3
+Label: Transportation
+Shape: rect
+Coordinates: 835,260,975,320
+---
+
+Example 4: Circle with named format
+---
+ID: HOTSPOT4
+Label: Control Point
+Shape: circle
+Coordinates: x=400, y=300, radius=50
+---
+
+Example 5: Circle with plain format
+---
+ID: HOTSPOT5
+Label: Center Target
+Shape: circle
+Coordinates: 600,400,75
+---
+
+VALIDATION LOGIC:
+1. Verify image present in Question Text
+2. Verify ## Hotspot Definitions or ## Hotspots section exists
+3. For each hotspot definition:
+   a. Extract ID, Label, Shape, Coordinates
+   b. Validate shape is one of: rect, rectangle, circle, polygon
+   c. Parse coordinates based on detected format (key=value or plain)
+   d. For rectangles: Verify 4 values present and x2 > x1, y2 > y1
+   e. For circles: Verify 3 values present and radius > 0
+4. Verify ## Answer section specifies valid hotspot ID
+5. Cross-reference Answer hotspot ID exists in definitions
 ```
 
 ### Image-Based Types (graphicgapmatch_v2, text_entry_graphic)
@@ -639,9 +705,9 @@ SEVERITY: Error (must fix)
 ERROR: Question content doesn't match declared type
 
 EXAMPLES:
-- Type: fill_in_the_blank but has multiple blanks (should be text_entry)
 - Type: multiple_choice_single but has 2+ correct answers (should be multiple_response)
 - Type: multiple_response but has only 1 correct answer (should be multiple_choice_single)
+- Type: text_entry but uses underscore format _____ (not supported)
 
 FIX TEMPLATE:
 "Question {N}: Content doesn't match type '{current_type}'. {explanation}. Suggested type: '{suggested_type}'."
@@ -781,8 +847,8 @@ SEVERITY: Warning (quality improvement)
 **Type**: multiple_choice_single
 **Status**: ✅ Valid
 
-### Question 2: FITB_Q002
-**Type**: fill_in_the_blank
+### Question 2: TE_Q002
+**Type**: text_entry
 **Status**: ⚠️ Warnings
 **Issues:**
 - Only 1 accepted alternative (recommend 3-5)

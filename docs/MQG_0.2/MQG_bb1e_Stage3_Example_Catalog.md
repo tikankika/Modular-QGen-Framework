@@ -10,6 +10,19 @@
 
 ### FOR CLAUDE: Example Documentation Strategy
 
+#### Context
+
+Stage 3 builds on Stage 0's initial example identification. During material analysis, Claude noted examples, demonstrations, and activities used in instruction. Stage 3 systematically expands this preliminary list through dialogue.
+
+At this point:
+- Stage 0 provided initial example catalog (preliminary, incomplete)
+- Stage 2 discussed which examples worked best for emphasis topics
+- Stage 3 comprehensively documents ALL effective examples
+
+This stage focuses on cataloging examples that can become question scenarios in BB4.
+
+---
+
 #### Opening Context
 
 ```
@@ -20,6 +33,20 @@ inform question scenarios later.
 
 Let's go through your Tier 1 topics and identify the best examples for each...
 ```
+
+#### Topic Progression Strategy
+
+Work through content systematically:
+
+1. **Start with Stage 0's example list** as reference (don't start from scratch)
+2. **Work through Tier 1 topics** in order (chronological from Stage 0)
+3. **For each topic, ask all 5 inquiry areas** (Primary, Demonstrations, Real-world, Visual, Case studies)
+4. **After Tier 1 complete**, briefly catalog Tier 2 examples if significant
+5. **Skip Tier 3/4 examples** (background only, not for assessment)
+
+Refer to Stage 0's preliminary list to prompt teacher memory, then expand with dialogue.
+
+---
 
 #### Systematic Inquiry
 
@@ -64,6 +91,22 @@ For each major concept (especially Tier 1), ask:
 - "What was the case?"
 - "What did it illustrate?"
 - "How complex was it?"
+
+#### Example Selection Criteria
+
+**Quality over Quantity:**
+- Focus on examples that were EFFECTIVE (students understood)
+- Include examples you'd DEFINITELY use again
+- Prioritize examples with MEMORABLE student response
+
+**Quantity Guidelines:**
+- Tier 1 topics: 2-4 examples each (depending on topic complexity)
+- Tier 2 topics: 1-2 examples each
+- Total target: 15-25 examples across all topics (not exhaustive)
+
+Don't catalog every example mentioned in materials—focus on the best ones.
+
+---
 
 #### Catalog Organization
 
@@ -120,6 +163,9 @@ Capture:
 - [ ] Type of example (demonstration, case, visual, etc.)
 - [ ] Student response (if memorable)
 
+**Where to Document:**
+Create Example Catalog document (part of BB1 output package). This catalog will be referenced in Stage 5 learning objectives and used in BB4 question scenario development.
+
 ---
 
 ### FOR TEACHERS: How to Catalog Examples
@@ -143,6 +189,8 @@ These examples may become scenarios in assessment questions. Knowing which examp
 
 ✅ **Student response:**
 "Students still referenced that example weeks later when discussing electricity mix."
+
+**Note:** This example is from an environmental science course. Your examples will reflect your subject area (e.g., cell diagrams in biology, proofs in mathematics, primary sources in history, etc.).
 
 **Less Helpful:**
 

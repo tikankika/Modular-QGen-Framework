@@ -7,6 +7,23 @@
 
 ---
 
+### Context
+
+Stage 5 is the synthesis stage that integrates ALL previous work into validated learning objectives. This stage has two parts:
+
+**PART A: Scope Boundaries** - Clarifies what's IN/OUT of assessment scope based on Stages 0-2 content architecture and emphasis patterns.
+
+**PART B: Learning Objectives Synthesis** - Creates learning objectives by integrating:
+- Stage 0: Content architecture (Tiers 1-4)
+- Stage 1: Validated priority structure
+- Stage 2: Emphasis rationale and assessment focus
+- Stage 3: Instructional examples
+- Stage 4: Common misconceptions
+
+This is the final BB1 stage - outputs become the foundation for BB2 (Assessment Design).
+
+---
+
 ### PART A: SCOPE BOUNDARIES (15-20 minutes)
 
 #### FOR CLAUDE: Boundary Clarification Strategy
@@ -142,6 +159,49 @@ Examples:
 - **Evaluate:** Make judgments, justify decisions
   - Verbs: Evaluate, assess, critique, judge, justify, argue
 
+#### Bloom's Level Decision Guide
+
+**When uncertain between levels:**
+
+**Remember vs. Understand:**
+- Remember: Can they recall/recognize without explanation? → Remember
+- Understand: Must they explain WHY or HOW? → Understand
+
+**Understand vs. Apply:**
+- Understand: Explaining a concept in their own words → Understand
+- Apply: Using the concept in a NEW scenario → Apply
+
+**Apply vs. Analyze:**
+- Apply: Using a procedure/method in a situation → Apply
+- Analyze: Breaking down relationships, comparing/contrasting → Analyze
+
+**Analyze vs. Evaluate:**
+- Analyze: Examining components and relationships → Analyze
+- Evaluate: Making judgments with justification → Evaluate
+
+**Default to lower level when uncertain** - easier to assess validly.
+
+---
+
+#### Objective Count Guidelines
+
+**Target Ranges:**
+- Total objectives: 15-30 (depending on course scope)
+- Tier 1: 10-20 objectives (majority of assessment)
+- Tier 2: 3-8 objectives (supplementary assessment)
+- Tier 3: 0-2 objectives (background, if included)
+
+**Quality over Quantity:**
+- Better to have 15 well-crafted objectives than 40 vague ones
+- Each objective should be specific, measurable, and evidence-based
+- Combine related learning goals rather than splitting unnecessarily
+
+**Red Flags:**
+- <10 total objectives: Probably too few, missing important learning goals
+- >40 total objectives: Too many, likely splitting hairs or including background content
+
+---
+
 #### Draft Presentation Format
 
 ```markdown
@@ -210,6 +270,19 @@ learning objectives:
 ```
 
 #### Validation Dialogue
+
+**Systematic Presentation Strategy:**
+
+1. **Present by topic** (not by Bloom's level) - keeps context clear
+2. **Show all objectives for a topic together** - teacher sees complete picture
+3. **Highlight evidence and examples** for each objective
+4. **After each topic, pause for feedback** before moving to next
+5. **Take notes on requested changes** but don't interrupt flow
+6. **After all topics presented, go back and make revisions**
+
+This prevents fragmentation and allows teacher to see the complete learning story for each topic before commenting.
+
+---
 
 **Presenting:**
 - Present all objectives systematically
@@ -349,6 +422,13 @@ We'll refine until they're right.
 ---
 
 ## SUPPORTING DOCUMENTATION
+
+**Where Documents Are Saved:**
+All BB1 outputs are saved in the BB1 output package directory:
+- Validated Learning Objectives (this document)
+- Content Analysis (from Stage 0)
+- Example Catalog (from Stage 3)
+- Misconception Registry (from Stage 4)
 
 This Learning Objectives document is accompanied by:
 

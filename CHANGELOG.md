@@ -9,6 +9,92 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### 2025-11-13 - MQG_0.2: BIOG001X Genetics Quiz Format Troubleshooting
+
+#### Fixed
+- **Text Entry Question Format Issues** - Identified and resolved markdown format errors in genetics quiz
+  - **Issue 1 - Missing YAML Frontmatter**: File started with markdown heading instead of required YAML metadata
+    - **Error**: "No YAML frontmatter found" + "Question block 1 returned no data"
+    - **Cause**: Known parser regression (per QTI Generator CHANGELOG 2025-11-10)
+    - **Fix**: Added complete YAML frontmatter with test_metadata, assessment_configuration, and learning_objectives
+  - **Issue 2 - Text Entry Question Missing Blank Placeholder**: Question 2 (BIOG_GEN_TE_Q002) failed generation
+    - **Error**: "Text entry question requires blanks definition" + question type "unknown"
+    - **Cause**: Missing `{{BLANK-1}}` placeholder in question text (line 47)
+    - **Spec**: Per markdown_specification.md lines 804-913, text_entry requires placeholders
+    - **Fix**: Changed "Under vilken fas i cellcykeln kopieras DNA:t?" → "...DNA:t? Svar: {{BLANK-1}}"
+  - **Issue 3 - Incorrect Blank Section Format**: Wrong markdown structure for blank definitions
+    - **Current Format**: `## Blank 1` with bullet list under "Accepted Alternatives:"
+    - **Required Format**: `## Blanks` → `### Blank 1` with structured fields
+    - **Missing Fields**: **Correct Answer**, **Case Sensitive**, **Expected Length**
+    - **Wrong Format**: Alternatives should be comma-separated, not bullet list
+    - **Fix**: Restructured to match specification (lines 856-868 of markdown_specification.md)
+
+#### Analysis
+- **Root Cause**: Questions created without YAML frontmatter trigger parser regression
+- **Impact**: 50-question bank failed at step 4 (XML generation) on question 2/50
+- **Validation**: Step 1 passed incorrectly (should have caught missing frontmatter)
+- **Resolution Status**: YAML added, Question 2 partially fixed (blank format pending)
+- **Remaining Work**: Complete blank format fix + verify all other text_entry questions
+
+#### Files Investigated
+- Target: `50_Fragor_Genetik_BB6_FINAL (2).md` (BIOG001X genetics bank)
+- Reference: QTI-Generator-for-Inspera `docs/markdown_specification.md`
+- Reference: QTI-Generator-for-Inspera `CHANGELOG.md` (parser regression entry 2025-11-10)
+
+#### Documentation Impact
+- Confirms importance of YAML frontmatter requirement in BB6 specifications
+- Validates text_entry format requirements in MQG_bb6_Field_Requirements_v03.md
+- Highlights need for stricter step 1 validation (should catch missing frontmatter)
+
+---
+
+### 2025-11-09 - MQG_0.2: BB6 Hotspot Coordinate Format Documentation
+
+#### Changed
+- **MQG_bb6_Field_Requirements_v03.md** - Enhanced hotspot coordinate specification
+  - Documented all 3 rectangle coordinate formats (lines 550-589):
+    1. Corner coordinates: `x1=N, y1=N, x2=N, y2=N`
+    2. Position + dimensions: `x=N, y=N, width=N, height=N`
+    3. Plain format: `x1,y1,x2,y2`
+  - Documented both circle coordinate formats:
+    1. Named format: `x=N, y=N, radius=N`
+    2. Plain format: `cx,cy,r`
+  - Added shape name equivalence: "rectangle" and "rect" are accepted as equivalent
+  - Added coordinate format conversion details
+  - Added examples showing all valid formats
+  - **Rationale**: QTI Generator parser now supports multiple coordinate formats for improved usability
+
+- **MQG_bb6_Output_Validation_v03.md** - Comprehensive hotspot validation section rewrite
+  - Completely rewrote hotspot validation section (lines 483-593)
+  - Added detailed validation rules for all coordinate formats
+  - Added shape name flexibility documentation (both "rect" and "rectangle" accepted)
+  - Added coordinate validation rules:
+    - Rectangle: Verify 4 values present and x2 > x1, y2 > y1
+    - Circle: Verify 3 values present and radius > 0
+  - Added 5 concrete examples showing different valid hotspot formats
+  - Added comprehensive error message templates for each validation failure
+  - Added step-by-step validation logic
+  - **Purpose**: Align validation documentation with QTI Generator parser capabilities
+
+#### Impact
+- **Specification Completeness**: All coordinate formats accepted by QTI Generator now documented
+- **Validation Accuracy**: Validation rules match parser implementation exactly
+- **Usability**: Question authors have clear guidance on all acceptable formats
+- **Consistency**: Documentation synchronized with QTI Generator implementation
+
+#### Files Changed
+- Updated: `docs/MQG_0.2/MQG_bb6_Field_Requirements_v03.md` (hotspot section lines 550-589)
+- Updated: `docs/MQG_0.2/MQG_bb6_Output_Validation_v03.md` (hotspot section lines 483-593)
+
+#### Integration with QTI Generator
+- Documentation changes reflect QTI Generator fixes in session 2025-11-09
+- Parser now supports x/y/width/height format in addition to x1/y1/x2/y2
+- Parser accepts both "rect" and "rectangle" as equivalent shape names
+- Validation script enhanced with `validate_hotspot_structure()` function
+- See QTI-Generator-for-Inspera CHANGELOG.md (2025-11-09 Session 9) for implementation details
+
+---
+
 ### 2025-11-08 - MQG_0.2 Branch: BB6 Restructuring to 2-Document System
 
 #### Changed

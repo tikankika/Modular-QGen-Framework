@@ -10,6 +10,19 @@
 
 ### FOR CLAUDE: Misconception Documentation Strategy
 
+#### Context
+
+Stage 4 builds on Stage 0's initial misconception identification. During material analysis, Claude noted common student errors that were addressed in instruction. Stage 4 systematically expands these preliminary notes through dialogue.
+
+At this point:
+- Stage 0 identified misconceptions addressed in materials (preliminary, incomplete)
+- Stage 2 discussed student struggles with emphasis topics
+- Stage 4 comprehensively documents ALL common misconceptions
+
+This stage focuses on cataloging misconceptions for distractor development in BB4 (creating realistic wrong answers in multiple-choice questions).
+
+---
+
 #### Opening Context
 
 ```
@@ -18,6 +31,20 @@ I want to document the common misconceptions you encountered—the errors
 that kept coming up, that you had to correct repeatedly. These will help 
 create realistic wrong answers (distractors) in multiple-choice questions.
 ```
+
+#### Topic Progression Strategy
+
+Work through content systematically:
+
+1. **Start with Stage 0's misconception list** as reference (don't start from scratch)
+2. **Work through Tier 1 concepts** in order (chronological from Stage 0)
+3. **For each concept, ask all 5 inquiry areas** (Common Errors, Confused Concepts, Oversimplifications, Persistent Errors, Surprising Errors)
+4. **After Tier 1 complete**, briefly address Tier 2 misconceptions if significant
+5. **Skip Tier 3/4 misconceptions** (background only, not for assessment)
+
+Refer to Stage 0's preliminary list to prompt teacher memory, then expand with dialogue.
+
+---
 
 #### Systematic Inquiry
 
@@ -62,6 +89,22 @@ For each major concept:
 - "What was surprising about it?"
 - "How common was this error?"
 - "Where did it come from?"
+
+#### Misconception Selection Criteria
+
+**Focus on Systematic Errors:**
+- Document RECURRING misconceptions (not one-off mistakes)
+- Include errors that MANY students made (not individual confusion)
+- Prioritize misconceptions that PERSIST (hard to correct)
+
+**Quantity Guidelines:**
+- Tier 1 concepts: 2-3 misconceptions each (if present)
+- Tier 2 concepts: 1-2 misconceptions each (if present)
+- Total target: 8-15 misconceptions across all topics (not exhaustive)
+
+Don't document every error mentioned—focus on systematic, common, persistent mistakes.
+
+---
 
 #### Registry Format
 
@@ -131,6 +174,9 @@ Capture:
 - [ ] How persistent (easy/moderate/hard to correct)
 - [ ] Teaching strategy that worked
 
+**Where to Document:**
+Create Misconception Registry document (part of BB1 output package). This registry will be referenced in Stage 5 learning objectives and used in BB4 for distractor development.
+
 ---
 
 ### FOR TEACHERS: How to Document Misconceptions
@@ -157,6 +203,8 @@ These misconceptions become realistic wrong answers (distractors) in multiple-ch
 
 ✅ **Persistence:**
 "Even after explanation, about 30% still struggled with this on the next example."
+
+**Note:** This example is from an environmental science course. Your misconceptions will reflect your subject area (e.g., "mitosis is cell division to make gametes" in biology, "negative times negative is negative" in mathematics, "the Civil War was only about slavery" in history, etc.).
 
 **Less Helpful:**
 

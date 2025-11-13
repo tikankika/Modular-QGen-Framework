@@ -1,0 +1,100 @@
+NAVIGATION GUIDE ADDITION FOR BB2A
+
+Add this section after the "Process Overview: Seven Connected Stages" section
+and before the "Document Status" at the end:
+
+---
+
+## USING THIS DOCUMENTATION
+
+Building Block 2 documentation is organized into modular files for easier navigation and maintenance:
+
+**MQG_bb2a_Introduction_Foundations.md** (this file)
+- Theoretical foundations
+- Process architecture
+- Entry points and prerequisites
+
+**MQG_bb2b_Stage1_Objective_Validation.md**
+- Validates learning objectives for assessment
+- Ensures objectives are observable, measurable, comprehensive
+- Stage gate: STOP before Stage 2
+
+**MQG_bb2c_Stage2_Strategy_Definition.md**
+- Establishes assessment purpose and constraints
+- Formative vs. summative considerations
+- Stage gate: STOP before Stage 3
+
+**MQG_bb2d_Stage3_Question_Target.md**
+- Determines total number of questions
+- Coverage-based calculations
+- Time-based validation
+- Stage gate: STOP before Stage 4
+
+**MQG_bb2e_Stage4_Blooms_Distribution.md**
+- Allocates questions across cognitive levels
+- Remember through Evaluate distribution
+- Stage gate: STOP before Stage 5
+
+**MQG_bb2f_Stage5_Question_Type_Mix.md**
+- Selects question format types
+- MC-Single, MC-Multiple, Text Area, etc.
+- Stage gate: STOP before Stage 6
+
+**MQG_bb2g_Stage6_Difficulty_Distribution.md**
+- Distributes questions by difficulty
+- Easy, Medium, Hard levels
+- Stage gate: STOP before Stage 7
+
+**MQG_bb2h_Stage7_Blueprint_Construction.md**
+- Synthesizes all decisions into blueprint
+- Comprehensive validation checks
+- Final approval protocol
+- Stage gate: STOP before BB3/BB4
+
+**MQG_bb2i_Facilitation_Best_Practices.md** (optional)
+- Guidance for AI systems
+- Guidance for teachers
+- Common pitfalls and solutions
+
+### Sequential Navigation
+
+Each stage file includes:
+- Clear prerequisites
+- Stage-specific content
+- Completion checkpoint
+- Explicit STOP command
+- Requirements for next stage
+
+**CRITICAL:** Do not proceed between stages without explicit teacher approval at each checkpoint.
+
+### Prerequisites
+
+Before starting Building Block 2, ensure:
+
+**Required from Building Block 1:**
+- Validated learning objectives
+- Content tier assignments (Tier 1, 2, 3)
+- Bloom's level classifications
+- Connection to instructional materials
+
+**OR Alternative Entry:**
+- Predetermined curriculum objectives (Standards-Based Entry)
+- Existing assessment to improve (Revision Entry)
+
+**Time Commitment:**
+- Stage 1: 15-20 minutes
+- Stage 2: 10-15 minutes
+- Stage 3: 10-15 minutes
+- Stage 4: 15-20 minutes
+- Stage 5: 20-25 minutes
+- Stage 6: 15-20 minutes
+- Stage 7: 20-30 minutes
+- **Total:** 1.5-2.5 hours for complete blueprint
+
+**Technical Requirements:**
+- Knowledge of target LMS platform capabilities
+- Understanding of available grading resources
+- Assessment time constraints
+- Student enrollment numbers
+
+---
