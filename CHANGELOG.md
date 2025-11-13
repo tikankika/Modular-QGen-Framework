@@ -9,6 +9,54 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### 2025-11-13 - MQG_0.2: BB6 Tags Architecture & Question Naming Documentation Update
+
+#### Changed
+- **MQG_bb6_Field_Requirements_v03.md** - Major updates to Tags structure and Question Name specification
+  - **Added Question Name Section** (lines 10-32): Documented recommended practice of adding descriptive headings to questions
+    - **Format**: `# Question N: Descriptive Name` before metadata section
+    - **Examples**: `# Question 1: Prokaryot vs Eukaryot grundskillnad`, `# Question 5: DNA-replikation i S-fasen`
+    - **Purpose**: Improves readability and organization of question banks
+    - **Source**: Best practice observed in `BIOLOGI_QUIZ_Cell_Virus_v8.1_FINAL.md`
+
+  - **Restructured Tags Section** (lines 106-188): Complete rewrite of tagging architecture
+    - **OLD APPROACH**: Required LO codes (LO-01, LO-02, etc.) in Tags field
+    - **NEW APPROACH**: Two-category tag structure for better searchability
+      1. **Question-Specific Subject Words** (3-5 per question): Concrete topic words users can search for
+         - Biology examples: Prokaryot, Eukaryot, DNA-replikation, Mitos, Meios, Cellkärna
+         - Engineering examples: Well-to-Wheel, Fossil-fuels, Carbon-emissions
+      2. **Structural Tags** (consistent across questions): Course ID, Bloom's Level, Difficulty, Type, Grading, Status
+    - **Removed**: LO code requirements from Tags field
+    - **Clarified**: Learning Objectives mapping tracked separately via BB2 Assessment Blueprint
+    - **Added**: 8 complete examples showing good vs bad tagging practices
+    - **Warning Added**: "LO codes are NOT searchable tags - use subject-specific keywords instead"
+    - **Rationale**: LO codes (LO-01, LO-02) are classification codes, not searchable keywords
+
+- **MQG_bb6_Output_Validation_v03.md** - Aligned validation rules with new Tags architecture
+  - **Updated Tags Field Validation** (lines 165-231):
+    - **Removed**: "✓ Learning Objective code(s)" requirement
+    - **Added**: "✓ 3-5 Subject-Specific Keywords" requirement
+    - **Added**: Warning for LO codes in Tags: "Tags contains LO code(s): {codes}. LO codes should NOT be in Tags - they are not searchable."
+    - **Updated**: All examples to show subject-specific words (Prokaryot, DNA-replikation) instead of LO codes
+  - **Updated Required Fields List** (lines 64-78):
+    - **Removed**: "4. **Learning Objectives**: check presence" from required fields
+    - **Added**: Note explaining LO mapping is tracked via BB2 Blueprint, not in question metadata
+    - **Updated**: Tags field requirement to include "check subject-specific keywords (3-5 minimum)"
+  - **Updated Example Errors** (line 813): Changed from "Missing required field 'Learning Objectives'" to "Missing required field 'Tags'"
+  - **Updated Improvement Suggestions** (line 852): Changed from LO documentation reminder to Tags quality check
+
+#### Impact
+- **Improved Searchability**: Questions now tagged with concrete subject words instead of abstract LO codes
+- **Better Organization**: Question Names provide quick overview of question bank contents
+- **Clearer Separation**: LO mapping (classification) vs Tags (searchability) purposes now distinct
+- **Documentation Alignment**: Requirements and validation docs now consistent with best practices
+
+#### Files Updated
+- `/docs/MQG_0.2/MQG_bb6_Field_Requirements_v03.md`
+- `/docs/MQG_0.2/MQG_bb6_Output_Validation_v03.md`
+
+---
+
 ### 2025-11-13 - MQG_0.2: BIOG001X Genetics Quiz Format Troubleshooting
 
 #### Fixed

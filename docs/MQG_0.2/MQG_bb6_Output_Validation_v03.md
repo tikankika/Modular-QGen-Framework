@@ -65,13 +65,16 @@ REQUIRED FIELDS:
 1. **Type**: check against valid values
 2. **Identifier**: check uniqueness and format
 3. **Points**: check format and value
-4. **Learning Objectives**: check presence
-5. **Bloom's Level**: check against valid taxonomy
-6. **Difficulty**: check against valid values
-7. **Tags**: check presence and format
+4. **Bloom's Level**: check against valid taxonomy
+5. **Difficulty**: check against valid values
+6. **Tags**: check presence, format, and subject-specific keywords (3-5 minimum)
 
 OPTIONAL FIELDS (if present):
-8. **Language**: check against valid codes
+7. **Language**: check against valid codes
+
+NOTE: Learning Objectives are NOT a required field in question metadata.
+      LO mapping is tracked separately via BB2 Assessment Blueprint documentation.
+      Tags field should contain subject-specific searchable keywords, NOT LO codes.
 ```
 
 ### Step 4: Content Structure Validation (Per Question)
@@ -171,23 +174,33 @@ VALIDATION:
 ✓ Minimum recommended: 8-12 keywords
 
 REQUIRED TAGS (Quality Checks):
-✓ Learning Objective code(s) - e.g., LO1, LO2, LO1A, LO1B
+✓ 3-5 Subject-Specific Keywords - concrete topic words (Prokaryot, DNA-replikation, Mitos, NOT LO codes!)
 ✓ Bloom's Taxonomy Level - Remember, Understand, Apply, Analyze, Evaluate, or Create (Title Case)
 ✓ Difficulty Level - Easy, Medium, or Hard (Title Case)
-✓ Course/Module identifier - e.g., TRA265, L1b, AY2024-25
-✓ Content topic keywords - e.g., Well-to-Wheel, evolution, fossil-fuels
+✓ Course/Module identifier - e.g., BIOG001X, TRA265, L1b
 ✓ Question type category - e.g., MC-Single, Fill-Blank, Text-Entry
 ✓ Grading type - Auto-Scored or Manual-Scoring
 ✓ Validation status - Validated, Draft, or Reviewed
 
-EXPECTED FORMAT (from TRA265 example):
-**Tags**: TRA265, L1b, AY2024-25, Well-to-Wheel, WTT-Stages, LO1, Remember, Easy, Fill-Blank, Auto-Scored, Validated
+✅ CORRECT FORMAT (Biology example):
+**Tags**: BIOG001X, Prokaryot, Eukaryot, Cellkärna, Membranomslutna-organeller, Understand, Medium, MC-Single, Auto-Scored, Validated
+           ↑         ↑─── SUBJECT-SPECIFIC WORDS (searchable!) ───↑                            ↑──── STRUCTURAL ────↑
+
+✅ CORRECT FORMAT (DNA Replication example):
+**Tags**: BIOG001X, DNA-replikation, S-fas, Cellcykeln, Helikas, Remember, Easy, Text-Entry, Auto-Scored, Validated
+           ↑         ↑──── SUBJECT-SPECIFIC WORDS ────↑          ↑────── STRUCTURAL ──────↑
+
+❌ INCORRECT FORMAT (Using LO Codes):
+**Tags**: BIOG001X, LO-01, LO-02, LO-03, Remember, Easy, MC-Single, Auto-Scored
+           ↑         ↑─── NOT SEARCHABLE! ───↑
+Problem: LO codes are NOT subject-specific. Use concrete words instead!
 
 COMMON ERRORS:
 ❌ Missing Tags field entirely
 ❌ Empty Tags value
 ❌ Too few keywords (< 5 minimum, < 8 recommended)
-❌ Missing Learning Objective code (REQUIRED)
+❌ Too few subject-specific words (< 3 minimum) - Tags like "BIOG001X, Remember, Easy" lack searchable content
+❌ Using LO codes in Tags (LO-01, LO1, LO2) - these are NOT searchable, use subject words instead
 ❌ Missing Bloom's Level (REQUIRED)
 ❌ Missing Difficulty (REQUIRED)
 ❌ Wrong case for Bloom's Level (remember → Remember)
@@ -197,22 +210,27 @@ COMMON ERRORS:
 
 FIX TEMPLATE:
 "Question {N}: Missing 'Tags' field (REQUIRED)."
-"Question {N}: Tags field is empty. Add required tags: LO code, Bloom's Level, Difficulty, plus course/topic/type/grading/status keywords."
-"Question {N}: Tags missing Learning Objective code (REQUIRED). Add LO code (e.g., LO1, LO2, LO1A)."
+"Question {N}: Tags field is empty. Add required tags: Course ID, 3+ subject keywords, Bloom's Level, Difficulty, grading type, status."
+"Question {N}: Tags has too few subject-specific keywords ({count} found, 3 minimum required). Add concrete topic words like: Prokaryot, DNA-replikation, Mitos, Cellkärna, etc."
 "Question {N}: Tags missing Bloom's Level (REQUIRED). Add one of: Remember, Understand, Apply, Analyze, Evaluate, Create."
 "Question {N}: Tags missing Difficulty (REQUIRED). Add one of: Easy, Medium, Hard."
 "Question {N}: Bloom's Level in Tags has wrong case: '{current}' should be '{corrected}' (Title Case)."
 "Question {N}: Difficulty in Tags has wrong case: '{current}' should be '{corrected}' (Title Case: Easy, Medium, or Hard)."
 
+WARNINGS (Non-blocking):
+⚠️ "Question {N}: Tags contains LO code(s): {codes}. LO codes should NOT be in Tags - they are not searchable. Use subject-specific words instead (e.g., Prokaryot, DNA-replikation, Mitos). Track LO mapping via BB2 Blueprint documentation."
+⚠️ "Question {N}: Only {count} subject-specific keywords found (recommended 3-5). Consider adding more concrete topic words for better searchability."
+
 SUGGESTIONS:
 "Question {N}: Only {count} tags present (recommended 8-12). Consider adding:
-  - More content topic keywords (improves searchability)
+  - More subject-specific keywords (improves searchability in LMS)
   - Academic year or semester tag (e.g., AY2024-25, Fall2024)
-  - Additional LO codes if question addresses multiple objectives
   - Question format details (e.g., Image-Based, Case-Study, Scenario)"
 
-IMPORTANT: Tags is the ONLY place to specify Learning Objectives, Bloom's Level, and Difficulty.
-           There are NO separate metadata fields for these values - everything goes in Tags.
+CRITICAL NOTE: Tags are for SEARCHABLE CONTENT - use subject-specific words, NOT LO codes!
+               Learning Objectives are tracked separately via BB2 Blueprint (Assessment Blueprint).
+               LO codes (LO-01, LO-02, etc.) should NEVER appear in Tags - use concrete topic words instead.
+               Example: "Prokaryot, Eukaryot, Cellkärna" NOT "LO-01, LO-02, LO-03"
 ```
 
 ### Language Field (Optional)
@@ -792,7 +810,7 @@ SEVERITY: Warning (quality improvement)
 ### Question {N}: {question_identifier}
 
 **Errors:**
-1. Missing required field 'Learning Objectives'
+1. Missing required field 'Tags'
 2. Type field format invalid: 'Multiple Choice Single' should be 'multiple_choice_single'
 3. Identifier format invalid: 'mc-q-001' should be 'MC_Q_001'
 
@@ -831,7 +849,7 @@ SEVERITY: Warning (quality improvement)
 
 ### Metadata Consistency
 
-1. **Learning Objectives**: Ensure all objectives (e.g., LO1, LO2) are documented in course learning outcomes.
+1. **Tags Quality**: Ensure all questions have 3-5 subject-specific keywords (e.g., Prokaryot, DNA-replikation, Mitos) for searchability. Avoid LO codes in Tags - track LO mapping via BB2 Assessment Blueprint instead.
 
 2. **Identifier Scheme**: Consider adopting consistent identifier pattern across all questions (e.g., {COURSE}_{MODULE}_Q{NUM}).
 

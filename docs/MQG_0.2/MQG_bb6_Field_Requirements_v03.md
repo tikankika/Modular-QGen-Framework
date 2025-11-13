@@ -7,6 +7,31 @@
 
 ---
 
+## QUESTION NAME (Recommended)
+
+**Format:** Descriptive heading before metadata
+
+```markdown
+# Question N: Descriptive Name
+
+**Type**: question_type
+**Identifier**: UNIQUE_ID
+...
+```
+
+**Examples:**
+- `# Question 1: Prokaryot vs Eukaryot grundskillnad`
+- `# Question 5: DNA-replikation i S-fasen`
+- `# Question 12: Homologa kromosompar ursprung`
+
+**Purpose:**
+- Improves readability in markdown files
+- Helps with navigation and review
+- Provides context for question content
+- Recommended for all question banks
+
+---
+
 ## UNIVERSAL METADATA FIELDS
 
 **Required for ALL questions:**
@@ -15,10 +40,13 @@
 **Type**: lowercase_underscores
 **Identifier**: UPPERCASE_UNDERSCORES
 **Points**: positive integer
-**Tags**: comma-separated keywords (must include LO codes, Bloom's Level, Difficulty)
+**Tags**: comma-separated keywords (must include subject words, Bloom's Level, Difficulty)
 ```
 
-**Note:** Learning Objectives, Bloom's Level, and Difficulty are specified WITHIN the Tags field, not as separate metadata fields.
+**Note:**
+- Use SUBJECT-SPECIFIC WORDS in Tags (e.g., "Prokaryot", "DNA-replikation"), not LO codes
+- Learning Objectives are for classification/curriculum mapping, not for tagging
+- LO codes (LO-01, LO-02) should NOT appear in Tags field - they are not searchable
 
 ### Field Specifications
 
@@ -78,25 +106,57 @@ Special: nativehtml MUST have Points: 0
 #### Tags
 ```
 Format: comma-separated keywords
-Purpose: Searchable metadata for question banks AND pedagogical tracking
+Purpose: Searchable metadata for question banks in LMS
 
-IMPORTANT: Tags is the ONLY place to specify Learning Objectives, Bloom's Level, and Difficulty.
-           There are NO separate metadata fields for these values.
+CRITICAL: Tags are for SEARCHABLE CONTENT - use subject-specific words, NOT codes
+          Learning Objectives tracked separately via BB2 Blueprint (curriculum mapping)
+          DO NOT put LO codes (LO-01, LO-02) in Tags - they are NOT searchable
 
-Example (from TRA265):
-**Tags**: TRA265, L1b, AY2024-25, Well-to-Wheel, WTT-Stages, LO1, Remember, Easy, Fill-Blank, Auto-Scored, Validated
+Tags Structure (Two Categories):
 
-Structure Breakdown (Required Components):
-  1. Course/Module Identifiers: TRA265, L1b, AY2024-25
-  2. Content Topic Keywords: Well-to-Wheel, WTT-Stages, fossil-fuels, evolution, etc.
-  3. Learning Objective Codes: LO1, LO2, LO3, LO1A, LO1B, etc.
-  4. Bloom's Taxonomy Level: Remember, Understand, Apply, Analyze, Evaluate, Create
-  5. Difficulty Level: Easy, Medium, Hard
-  6. Question Type Category: Fill-Blank, MC-Single, Text-Entry, Matching, etc.
-  7. Grading Type: Auto-Scored, Manual-Scoring
-  8. Validation Status: Validated, Draft, Reviewed
+1. QUESTION-SPECIFIC SUBJECT WORDS (3-5 per question):
+   - Konkreta ämnesord som beskriver vad frågan handlar om
+   - Användare kan söka på dessa ord i LMS
+   - Biology examples: Prokaryot, Eukaryot, DNA-replikation, Mitos, Meios, Cellkärna
+   - Engineering examples: Well-to-Wheel, Fossil-fuels, Carbon-emissions
 
-Bloom's Taxonomy Levels (choose one):
+2. STRUCTURAL TAGS (samma över många frågor):
+   - Course ID: BIOG001X, TRA265
+   - Bloom's Level: Remember, Understand, Apply, Analyze, Evaluate, Create
+   - Difficulty: Easy, Medium, Hard
+   - Question Type: MC-Single, Text-Entry, Matching, Fill-Blank
+   - Grading: Auto-Scored, Manual-Scoring
+   - Status: Validated, Draft, Tier1, Tier2
+
+✅ GOOD EXAMPLE (Biology - Cell Types):
+**Tags**: BIOG001X, Prokaryot, Eukaryot, Cellkärna, Membranomslutna-organeller, Understand, Medium, MC-Single, Auto-Scored, Validated
+           ↑         ↑── QUESTION-SPECIFIC (searchable!) ──↑                        ↑──── STRUCTURAL ────↑
+
+✅ GOOD EXAMPLE (Biology - DNA Replication):
+**Tags**: BIOG001X, DNA-replikation, S-fas, Cellcykeln, Helikas, DNA-polymeras, Remember, Easy, Text-Entry, Auto-Scored, Validated
+           ↑         ↑────── QUESTION-SPECIFIC (searchable!) ──────↑                ↑──── STRUCTURAL ────↑
+
+❌ BAD EXAMPLE (Using LO Codes):
+**Tags**: BIOG001X, LO-01, LO-02, LO-03, Remember, Easy, MC-Single, Auto-Scored
+           ↑         ↑─ NOT SEARCHABLE! ─↑
+Problem: What does "LO-01" mean? User can't search for meaningful content!
+
+WHY SUBJECT WORDS (not LO codes):
+  ✅ SEARCHABLE: "Show me all Prokaryot questions" → Returns all relevant questions
+  ❌ NOT SEARCHABLE: "Show me all LO-01 questions" → Meaningless without LO mapping doc
+  ✅ SELF-DOCUMENTING: Tags reveal question content at a glance
+  ❌ REQUIRES LOOKUP: LO-01 requires external reference document
+  ✅ STABLE: Subject words remain valid even if LO structure changes
+  ❌ BRITTLE: LO renumbering breaks all coded questions
+
+Learning Objectives Mapping (Separate Process):
+  - Track LO alignment in BB2 Blueprint (Assessment Blueprint documentation)
+  - Map question groups → Learning Objectives at planning stage
+  - LO codes stay in planning docs, NOT in question Tags
+  - Example mapping: "Q001-Q015 cover LO1 (Cell Structure), Q016-Q030 cover LO2 (DNA Replication)"
+  - This allows flexible LO reorganization without touching question files
+
+Bloom's Taxonomy Levels (choose ONE):
   - Remember: Recall facts and basic concepts
   - Understand: Explain ideas or concepts
   - Apply: Use information in new situations
@@ -104,25 +164,27 @@ Bloom's Taxonomy Levels (choose one):
   - Evaluate: Justify a stand or decision
   - Create: Produce new or original work
 
-Difficulty Levels (choose one):
+Difficulty Levels (choose ONE):
   - Easy: Basic recall or simple application
   - Medium: Requires understanding or multi-step reasoning
   - Hard: Complex analysis, evaluation, or synthesis
 
 Best Practices:
-  - REQUIRED: Include LO code(s), Bloom's Level, and Difficulty in every question
+  - REQUIRED: 3-5 question-specific subject words for searchability
+  - REQUIRED: Bloom's Level and Difficulty in every question
   - Include course/module identifiers for organizational filtering
-  - Include content topic keywords for searchability
   - Include question type and grading type for administrative filtering
   - Include validation status for quality tracking
-  - Recommended 8-12 keywords per question for optimal searchability
+  - Recommended 8-12 total keywords per question
+  - Use hyphens for multi-word concepts: DNA-replikation, Well-to-Wheel
+  - Use Title Case for Bloom's Level: Remember (not remember)
+  - Use Title Case for Difficulty: Easy (not easy)
 
 Rules:
-  - Minimum required tags: Course ID, LO code, Bloom's Level, Difficulty, Grading Type
-  - Tags are exported as searchable labels in Inspera LMS
-  - Use Title Case for Bloom's Level (Remember, not remember)
-  - Use Title Case for Difficulty (Easy, not easy)
-  - Use consistent LO code format across questions (e.g., all LO1, LO2, or all LO1A, LO1B)
+  - Minimum required: Course ID, 3+ Subject Words, Bloom's Level, Difficulty, Grading Type
+  - Tags exported as searchable labels in Inspera LMS
+  - Use specific nouns/concepts, avoid generic codes (LO-01, OBJ-03)
+  - DO NOT put LO codes in Tags - use BB2 Blueprint for LO mapping instead
 ```
 
 ---
